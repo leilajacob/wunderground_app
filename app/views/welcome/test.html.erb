@@ -1,0 +1,28 @@
+<div class="row">
+	<div class="col-md-6 col-md-offset-3">
+		<div class="well">
+			<h2>Welcome to <%= @location %>!</h2>
+			<div class="row">
+			<div class="col-md-7">
+				<p><em>What's the weather like?</em></p>
+				<p>
+					Tempature is: <%= @temp_f %>&deg: F / <%= @temp_c %>&deg: C
+				</p>
+				<p>
+					Feels like: <%= @real_feel %>&deg: F
+				</p>	
+
+			</div>
+			<div class="col-md-5">
+				<p>
+					<%= @weather_words %> <%= image_tag @weather_icon %>
+				</p>
+				<p>
+					<%= link_to "Full Forecast: @ wunderground.com", @forecast_link, target: "_blank" %>
+				</p>
+
+			</div>
+			</div>
+		</div>
+	</div>
+</div>

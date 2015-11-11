@@ -1,0 +1,62 @@
+<div class="row">
+	<div class="col-md-6 col-md-offset-1">
+		<div class="well">
+			<h1>Look up Your Local Forecast</h1>
+			<p>What's the weather like in your city?</p>
+
+			<div>
+				<%= form_tag(index_path) do %>
+					<%= text_field_tag :city, nil, placeholder: "City Name" %><br />
+					<%= select_tag :state, options_for_select(@states), prompt: "Please select" %><br />
+					<%= submit_tag "Check Weather", class: "btn btn-info" %>
+				<% end %>
+			</div>
+
+		</div>
+	</div>
+
+
+	<div class="col-md-4 col-md-offset-1">
+		<div class="well">
+			<% if @location_list.empty? %>
+				<p>Saved locations will be listed here.</p>
+			<% else %>
+				<% @location_list.each do |l| %>
+					<p><%= link_to "#{l.city}, #{l.state}", root_path(city: l.city, state: l.state) %></p>
+				<% end %>
+			<% end %>
+		</div>
+	</div> 
+
+</div>
+
+<% if @location != nil %>
+<div class="row">
+	<div class="col-md-6 col-md-offset-1">
+		<div class="well">
+			<h2>Welcome to <%= @location %>!</h2>
+			<div class="row">
+			<div class="col-md-7">
+				<p><em>What's the weather like?</em></p>
+				<p>
+					Tempature is: <%= @temp_f %>&deg F / <%= @temp_c %>&deg C
+				</p>
+				<p>
+					Feels like: <%= @real_feel %>&deg F
+				</p>	
+
+			</div>
+			<div class="col-md-5">
+				<p>
+					<%= @weather_words %> <%= image_tag @weather_icon %>
+				</p>
+				<p>
+					<%= link_to "Full Forecast: @ wunderground.com", @forecast_link, target: "_blank" %>
+				</p>
+
+			</div>
+			</div>
+		</div>
+	</div>
+</div>
+<% end %>
